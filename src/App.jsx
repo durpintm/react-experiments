@@ -41,7 +41,11 @@ import "./App.css";
 const App = () => {
   return (
     <div>
-      <CardWrapper innerComponent={<TextComponent />} />
+      {/* <CardWrapper innerComponent={<TextComponent />} /> */}
+      <CardWrapper>Hi there</CardWrapper>
+      <CardWrapper>
+        <TextComponent />
+      </CardWrapper>
     </div>
   );
 };
@@ -51,10 +55,10 @@ function TextComponent() {
 }
 
 // eslint-disable-next-line react/prop-types
-function CardWrapper({ innerComponent }) {
+function CardWrapper({ children }) {
   return (
     <div>
-      <div style={{ border: "4px solid black" }}>{innerComponent}</div>
+      <div style={{ border: "4px solid black" }}>{children}</div>
     </div>
   );
 }
