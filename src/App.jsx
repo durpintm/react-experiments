@@ -1,5 +1,8 @@
 // import { useState } from "react";
+import { useState } from "react";
 import "./App.css";
+import { memo } from "react";
+import { useCallback } from "react";
 
 // function App() {
 // When title which is a state variable changes the component re-renders
@@ -28,7 +31,7 @@ import "./App.css";
 //   );
 // }
 
-// // eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types
 // function Header({ title }) {
 //   return (
 //     <>
@@ -38,29 +41,64 @@ import "./App.css";
 // }
 
 // Wrapper Component
-const App = () => {
-  return (
-    <div>
-      {/* <CardWrapper innerComponent={<TextComponent />} /> */}
-      <CardWrapper>Hi there</CardWrapper>
-      <CardWrapper>
-        <TextComponent />
-      </CardWrapper>
-    </div>
-  );
-};
+// const App = () => {
+//   return (
+//     <div>
+//       {/* <CardWrapper innerComponent={<TextComponent />} /> */}
+//       <CardWrapper>Hi there</CardWrapper>
+//       <CardWrapper>
+//         <TextComponent />
+//       </CardWrapper>
+//     </div>
+//   );
+// };
 
-function TextComponent() {
-  return <div>Hi text</div>;
-}
+// function TextComponent() {
+//   return <div>Hi text</div>;
+// }
 
 // eslint-disable-next-line react/prop-types
-function CardWrapper({ children }) {
+// function CardWrapper({ children }) {
+//   return (
+//     <div>
+//       <div style={{ border: "4px solid black" }}>{children}</div>
+//     </div>
+//   );
+// }
+var a = 1;
+
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  //useCallback
+  a = useCallback(() => {
+    console.log("Hi world!");
+  }, []);
+
   return (
-    <div>
-      <div style={{ border: "4px solid black" }}>{children}</div>
-    </div>
+    <>
+      <div>
+        <button
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
+        >
+          Counter {counter}
+        </button>
+        <Demo a={a} />
+      </div>
+    </>
   );
 }
+
+// eslint-disable-next-line react/display-name, react/prop-types
+const Demo = memo(function ({ a }) {
+  console.log("rerender");
+  return (
+    <div>
+      <div>hi there</div>
+    </div>
+  );
+});
 
 export default App;
