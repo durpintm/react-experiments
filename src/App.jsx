@@ -65,13 +65,13 @@ import { useCallback } from "react";
 //     </div>
 //   );
 // }
-var a = 1;
+// var a = 1;
 
 function App() {
   const [counter, setCounter] = useState(0);
 
   //useCallback
-  a = useCallback(() => {
+  const a = useCallback(() => {
     console.log("Hi world!");
   }, []);
 
@@ -94,6 +94,7 @@ function App() {
 // eslint-disable-next-line react/display-name, react/prop-types
 const Demo = memo(function ({ a }) {
   console.log("rerender");
+  a();
   return (
     <div>
       <div>hi there</div>
